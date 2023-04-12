@@ -1,0 +1,23 @@
+{
+  "name": "odin-knight-travails",
+  "version": "1.0.0",
+  "description": "Project: Knight Travails (JavaScript Course)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ftrbnd/odin-knight-travails.git"
+  },
+  "author": "Giovanni Salas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ftrbnd/odin-knight-travails/issues"
+  },
+  "homepage": "https://github.com/ftrbnd/odin-knight-travails#readme",
+  "devDependencies": {
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
