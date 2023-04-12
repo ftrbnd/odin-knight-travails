@@ -80,7 +80,12 @@ function game() {
     console.log('Starting board: ', JSON.parse(JSON.stringify(board)));
 
     const solutionNode = knightMoves(board, start, end);
+    const pathList = solutionNode.getPathList();
+    for (let i = 0; i < pathList.length; i++) {
+        board[pathList[i][0]][pathList[i][1]] = i;
+    }
     console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
+    console.log('Final board: ', JSON.parse(JSON.stringify(board)));
 }
 
 game();
