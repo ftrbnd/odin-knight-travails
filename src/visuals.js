@@ -123,7 +123,6 @@ function displayPath(solutionNode, board) {
     pathText.textContent = `Path: ${solutionNode.toString()}`;
 
     console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
-    console.log('Final board: ', JSON.parse(JSON.stringify(board)));
 }
 
 export function registerRadioListeners() {

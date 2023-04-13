@@ -1,4 +1,4 @@
-import { createBoard, knightMoves } from "./gameLogic";
+import { createBoard } from "./gameLogic";
 import { displayBoard, registerRadioListeners } from "./visuals";
 
 function game() {
