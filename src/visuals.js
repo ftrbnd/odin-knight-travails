@@ -42,6 +42,8 @@ function createSquare(board, row, col) {
                     square.removeChild(square.firstChild);
                 }
             }
+            const pathText = document.querySelector('.path h2');
+            pathText.textContent = '';
                     
             const knightIcon = document.createElement('img');
             knightIcon.src = './assets/chess-knight.png';
@@ -116,6 +118,9 @@ function displayPath(solutionNode, board) {
             pathSquare.appendChild(pathNumber);
         }
     }
+
+    const pathText = document.querySelector('.path h2');
+    pathText.textContent = `Path: ${solutionNode.toString()}`;
 
     console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
     console.log('Final board: ', JSON.parse(JSON.stringify(board)));
