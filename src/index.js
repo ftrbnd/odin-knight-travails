@@ -1,6 +1,5 @@
 import { Node } from "./Node";
 
-
 function createBoard(rows, cols) {
     const board = [];
     for (let r = 0; r < rows; r++) {
