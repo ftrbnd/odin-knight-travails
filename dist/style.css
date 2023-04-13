@@ -1,0 +1,31 @@
+:root {
+    --light-color: #DDE5ED;
+    --medium-color: #A9D4B2;
+    --dark-color: #1D4230;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-color);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    border: 1px solid black;
+}
+
+.square:hover {
+    cursor: pointer;
+}

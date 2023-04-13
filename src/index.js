@@ -1,5 +1,9 @@
 import { Node } from "./Node";
 
+const LIGHT_COLOR = '#DDE5ED';
+const MEDIUM_COLOR = 'rgb(169, 212, 178)';
+const DARK_COLOR = 'rgb(29, 66, 48)';
+
 function createBoard(rows, cols) {
     const board = [];
     for (let r = 0; r < rows; r++) {
@@ -38,10 +42,42 @@ function knightMoves(board, start, end) { // start = [x, y]; end = [x, y];
     }
 }
 
+function displayBoard(board) {
+    const boardDiv = document.querySelector('.board');
+    boardDiv.style.height = `${board[0].length * 64}px`;
+    boardDiv.style.width = `${board[0].length * 64}px`;
+
+    for (let r = 0; r < board.length; r++) {
+        const square = createSquare(r, 0);
+        square.style.backgroundColor = r % 2 == 0 ? MEDIUM_COLOR : DARK_COLOR;
+        boardDiv.appendChild(square);
+
+        for (let c = 1; c < board[0].length; c++) {
+            const square = createSquare(r, c);
+            square.style.backgroundColor = boardDiv.lastChild.style.backgroundColor == MEDIUM_COLOR ? DARK_COLOR : MEDIUM_COLOR;
+            
+            boardDiv.appendChild(square);
+        }
+    }
+
+    function createSquare(row, col) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.id = `${row}-${col}`;
+        square.style.height = '64px';
+        square.style.width = '64px';
+
+        // square.addEventListener('click', showShortestPath());
+
+        return square;
+    }
+}
+
 function game() {
     const board = createBoard(8, 8);
     const start = [4, 1], end = [5, 6];
     console.log('Starting board: ', JSON.parse(JSON.stringify(board)));
+    displayBoard(board);
 
     const solutionNode = knightMoves(board, start, end);
     const pathList = solutionNode.getPathList();
