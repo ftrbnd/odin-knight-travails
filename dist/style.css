@@ -36,6 +36,18 @@ body {
     grid-template-columns: 1fr;
 }
 
+.path-number {
+    height: 16px;
+    width: min-content;
+
+    position: relative;
+    text-align: end;
+    color: var(--light-color);
+    margin: 0;
+    top: -24px;
+    left: 48px;
+}
+
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;
