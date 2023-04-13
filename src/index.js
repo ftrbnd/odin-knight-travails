@@ -63,12 +63,11 @@ function displayBoard(board) {
     function createSquare(row, col) {
         const square = document.createElement('div');
         square.classList.add('square');
-        square.id = `${row}-${col}`;
+        square.id = `s${row}-${col}`;
         square.style.height = '64px';
         square.style.width = '64px';
 
         square.addEventListener('click', () => {
-
             if (localStorage.getItem('active-marker') == 'start') {
                 const knightIcon = document.createElement('img');
                 knightIcon.src = './assets/chess-knight.png';
@@ -78,6 +77,9 @@ function displayBoard(board) {
                 }
 
                 square.appendChild(knightIcon);
+
+                localStorage.setItem('start', square.id);
+
             } else if (localStorage.getItem('active-marker') == 'end') {
                 const markerIcon = document.createElement('img');
                 markerIcon.src = './assets/map-marker.png';
@@ -87,6 +89,28 @@ function displayBoard(board) {
                 }
 
                 square.appendChild(markerIcon);
+
+                localStorage.setItem('end', square.id);
+
+                const startCoords = [parseInt(localStorage.getItem('start')[1]), parseInt(localStorage.getItem('start')[3])];
+                const endCoords = [parseInt(square.id[1]), parseInt(square.id[3])];
+                console.log(startCoords, endCoords);
+                const solutionNode = knightMoves(board, startCoords, endCoords);
+                console.log(solutionNode);
+
+                const pathList = solutionNode.getPathList();
+                for (let i = 0; i < pathList.length; i++) {
+                    console.log(pathList[i]);
+                    const pathSquare = document.querySelector(`#s${pathList[i][0]}-${pathList[i][1]}`);
+
+                    console.log(pathSquare);
+
+                    const marker = document.createElement('img');
+                    marker.src = './assets/alpha-x.png';
+                    pathSquare.appendChild(marker);
+                }
+                console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
+                console.log('Final board: ', JSON.parse(JSON.stringify(board)));
             }
         });
 
@@ -107,19 +131,19 @@ function registerFormListener() {
 
 function game() {
     const board = createBoard(8, 8);
-    const start = [4, 1], end = [5, 6];
-    console.log('Starting board: ', JSON.parse(JSON.stringify(board)));
+    // const start = [4, 1], end = [5, 6];
+    // console.log('Starting board: ', JSON.parse(JSON.stringify(board)));
     displayBoard(board);
 
     registerFormListener()
 
-    const solutionNode = knightMoves(board, start, end);
-    const pathList = solutionNode.getPathList();
-    for (let i = 0; i < pathList.length; i++) {
-        board[pathList[i][0]][pathList[i][1]] = i;
-    }
-    console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
-    console.log('Final board: ', JSON.parse(JSON.stringify(board)));
+    // const solutionNode = knightMoves(board, start, end);
+    // const pathList = solutionNode.getPathList();
+    // for (let i = 0; i < pathList.length; i++) {
+    //     board[pathList[i][0]][pathList[i][1]] = i;
+    // }
+    // console.log(`Got to end in ${solutionNode.pathLength()} moves!`, solutionNode.toString());
+    // console.log('Final board: ', JSON.parse(JSON.stringify(board)));
 }
 
 game();
