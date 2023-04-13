@@ -29,3 +29,21 @@ body {
 .square:hover {
     cursor: pointer;
 }
+
+.square {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 32px;
+}
+
+form > p {
+    text-align: center;
+    grid-column: 1 / -1;
+}

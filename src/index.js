@@ -67,9 +67,41 @@ function displayBoard(board) {
         square.style.height = '64px';
         square.style.width = '64px';
 
-        // square.addEventListener('click', showShortestPath());
+        square.addEventListener('click', () => {
+
+            if (localStorage.getItem('active-marker') == 'start') {
+                const knightIcon = document.createElement('img');
+                knightIcon.src = './assets/chess-knight.png';
+
+                while (square.firstChild) {
+                    square.removeChild(square.firstChild);
+                }
+
+                square.appendChild(knightIcon);
+            } else if (localStorage.getItem('active-marker') == 'end') {
+                const markerIcon = document.createElement('img');
+                markerIcon.src = './assets/map-marker.png';
+
+                while (square.firstChild) {
+                    square.removeChild(square.firstChild);
+                }
+
+                square.appendChild(markerIcon);
+            }
+        });
 
         return square;
+    }
+}
+
+function registerFormListener() {
+    localStorage.setItem('active-marker', 'start');
+    
+    const inputs = document.querySelectorAll('input');
+    for (const input of inputs) {
+        input.addEventListener('change', () => {
+            localStorage.setItem('active-marker', input.id);
+        });
     }
 }
 
@@ -78,6 +110,8 @@ function game() {
     const start = [4, 1], end = [5, 6];
     console.log('Starting board: ', JSON.parse(JSON.stringify(board)));
     displayBoard(board);
+
+    registerFormListener()
 
     const solutionNode = knightMoves(board, start, end);
     const pathList = solutionNode.getPathList();
